@@ -1,0 +1,1 @@
+- [Browser-side file processing checks](browser-side-file-processing-checks.md) — Node 24 can run TypeScript runtime checks with `--experimental-strip-types` from the owning app package.

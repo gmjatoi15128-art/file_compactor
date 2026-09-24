@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "File Compactor"
+description = "A privacy-conscious file compression web app that helps people reduce image and document file sizes with clear quality goals, honest results, and no required signup."
+version = "1.0.0"
+id = "artifacts/file-compactor"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21989
+
+[services.development]
+run = "pnpm --filter @workspace/file-compactor run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/file-compactor", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/file-compactor/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21989"
+BASE_PATH = "/"

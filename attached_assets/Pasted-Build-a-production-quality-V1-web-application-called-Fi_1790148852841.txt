@@ -1,0 +1,1271 @@
+Build a production-quality V1 web application called “File Compactor”.
+
+IMPORTANT:
+Do not build a generic file-tool clone.
+Do not build 50+ tools.
+Do not use fake compression or simulated results.
+The core compression must actually work.
+
+The product vision is:
+
+“Simple, quality-focused file compression with generous free usage, transparent results, and privacy-conscious processing.”
+
+The flagship tool is PDF compression. V1 should also include JPG, PNG, WebP, DOCX, PPTX and XLSX compression where technically reliable.
+
+==================================================
+1. PRODUCT PRINCIPLES
+==================================================
+
+The entire product must follow these principles:
+
+1. Simple by default
+2. Powerful when needed
+3. Quality before aggressive compression
+4. No misleading claims
+5. Transparent results
+6. Privacy-conscious
+7. Generous free usage
+8. No unnecessary signup
+9. Clear errors
+10. Verify generated files
+11. Never silently corrupt or damage the original
+12. Fast and responsive
+13. Mobile-first responsive design
+14. SEO-friendly architecture
+
+The most important UX principle:
+
+The user should not need to understand compression technology.
+
+Instead of forcing users to choose DPI, JPEG quality, etc., first ask what result they want.
+
+Example:
+
+“What do you want?”
+
+- Best quality
+- Balanced
+- Smallest possible
+- Make it under a specific size
+
+Advanced technical controls can exist under an “Advanced options” section.
+
+==================================================
+2. V1 TOOL SCOPE
+==================================================
+
+Build these tools:
+
+1. Compress PDF
+2. Compress JPG
+3. Compress PNG
+4. Compress WebP
+5. Compress DOCX
+6. Compress PPTX
+7. Compress XLSX
+
+PDF compression is the flagship and should receive the most attention.
+
+Do NOT build these yet:
+
+- PDF to Word
+- Word to PDF
+- PDF merge
+- PDF split
+- PDF editor
+- OCR
+- AI chatbot
+- user dashboard
+- payments
+- API
+- browser extension
+- mobile app
+- team accounts
+
+The architecture should make future expansion possible, but V1 should remain focused.
+
+==================================================
+3. TECHNOLOGY
+==================================================
+
+Use a modern, maintainable full-stack architecture.
+
+Preferred:
+
+Frontend:
+- React
+- TypeScript
+- Tailwind CSS
+- component-based architecture
+
+Backend:
+- Node.js/TypeScript unless a different backend language is clearly better for a specific compression engine
+
+Use Replit's full-stack environment.
+
+Use server-side processing where required.
+
+Use browser-side processing when it is technically safe and practical, especially for image operations where this can improve privacy and reduce server costs.
+
+Do NOT store uploaded files permanently.
+
+Temporary files must be cleaned up automatically.
+
+Keep compression engines modular so each file format has its own processor.
+
+Do not create one fake generic compression function for every format.
+
+==================================================
+4. BRAND / VISUAL IDENTITY
+==================================================
+
+Brand:
+File Compactor
+
+Brand personality:
+
+- clean
+- trustworthy
+- modern
+- technical but not intimidating
+- simple
+- professional
+- privacy-conscious
+
+Avoid making it look like an enterprise dashboard.
+
+Avoid excessive gradients.
+
+Avoid excessive animations.
+
+Avoid huge illustrations that distract from the tool.
+
+The interface should make the upload area the visual focus.
+
+Use a clean neutral background with a strong primary brand color.
+
+Typography:
+- modern sans-serif
+- highly readable
+- strong hierarchy
+
+Rounded cards are acceptable but don't overdo them.
+
+Use subtle shadows and borders.
+
+Accessibility:
+- strong contrast
+- keyboard navigation
+- visible focus states
+- clear button states
+- readable font sizes
+- accessible labels
+
+==================================================
+5. HOMEPAGE
+==================================================
+
+Create:
+
+/
+
+The homepage should immediately explain the product.
+
+Hero:
+
+Headline:
+
+“Compress files without the hassle.”
+
+Subheadline:
+
+“Simple, quality-focused file compression. Reduce file size while keeping your documents and images usable.”
+
+Primary upload area:
+
+“Drop your file here”
+
+Secondary:
+
+“Choose a file”
+
+Supported formats should be visible.
+
+Below the uploader:
+
+“Privacy-conscious processing”
+“Quality-focused compression”
+“Generous free usage”
+“No unnecessary signup”
+
+Then:
+
+“What do you want to compress?”
+
+Tool cards:
+
+PDF
+JPG
+PNG
+WebP
+DOCX
+PPTX
+XLSX
+
+Each card links to its dedicated tool page.
+
+Then a section:
+
+“Why File Compactor?”
+
+Explain:
+
+- Easy to use
+- Quality-focused
+- Target-size compression
+- Clear before/after results
+- Privacy-conscious
+- No unnecessary account
+
+Then:
+
+“How it works”
+
+1. Upload
+2. Choose your goal
+3. Compress
+4. Verify
+5. Download
+
+Then FAQ.
+
+Then footer.
+
+==================================================
+6. NAVIGATION
+==================================================
+
+Header:
+
+File Compactor logo/name
+
+Navigation:
+
+Tools
+How it works
+Privacy
+
+CTA:
+
+“Compress a file”
+
+On mobile use a clean mobile menu.
+
+Do not overcrowd navigation.
+
+==================================================
+7. TOOL PAGE TEMPLATE
+==================================================
+
+Create reusable tool-page architecture.
+
+Example:
+
+/compress-pdf
+
+Title:
+
+“Compress PDF”
+
+Subtitle:
+
+“Reduce PDF file size while preserving as much quality as possible.”
+
+Main tool card.
+
+Step 1:
+
+Upload file.
+
+Drag and drop area.
+
+Button:
+
+“Choose PDF”
+
+Show:
+
+- supported format
+- maximum file size
+- privacy information
+
+After upload:
+
+Show filename.
+
+Show original size.
+
+Show page count where applicable.
+
+Allow:
+
+“Change file”
+
+==================================================
+8. USER GOAL SELECTION
+==================================================
+
+After upload, show:
+
+“What do you want to achieve?”
+
+Options:
+
+1. Best quality
+
+Description:
+“Reduce size while preserving quality as much as possible.”
+
+2. Balanced
+
+Description:
+“Good balance between size reduction and quality.”
+
+3. Smallest possible
+
+Description:
+“Maximum practical size reduction. Some quality changes may occur.”
+
+4. Target size
+
+Allow user to enter:
+
+KB / MB
+
+Presets:
+
+500 KB
+1 MB
+2 MB
+5 MB
+10 MB
+
+Also provide:
+
+Custom target size
+
+Do not claim that every target can always be reached without quality loss.
+
+If the requested target would require significant quality degradation, explain this honestly.
+
+==================================================
+9. PDF ANALYSIS
+==================================================
+
+Before compression, analyze the PDF.
+
+Where technically possible determine:
+
+- file size
+- page count
+- whether pages contain raster images
+- approximate image contribution
+- text/vector presence
+- scanned-page characteristics
+- metadata
+- other optimizable structures
+
+Show a concise analysis.
+
+Example:
+
+“Your PDF is 8.7 MB and contains 24 pages.”
+
+If useful:
+
+“Most of the file size comes from embedded images.”
+
+Do not overwhelm the user with technical information.
+
+==================================================
+10. PDF COMPRESSION ENGINE
+==================================================
+
+Implement REAL PDF compression.
+
+Do not simulate compression.
+
+The compression pipeline should attempt appropriate optimization in a quality-first order.
+
+Possible stages:
+
+1. Validate PDF
+2. Analyze PDF
+3. Optimize PDF structure
+4. Remove safe unnecessary metadata where appropriate
+5. Optimize embedded images
+6. Apply selected quality/compression profile
+7. Rebuild PDF
+8. Validate generated PDF
+9. Compare output size
+10. Return verified result
+
+Preserve wherever possible:
+
+- page count
+- page dimensions
+- text
+- vector graphics
+- hyperlinks
+- document structure
+
+Do not blindly rasterize every page.
+
+Do not convert text pages into images.
+
+For scanned PDFs, use a scan-aware strategy.
+
+If a file is already highly optimized:
+
+Tell the user:
+
+“This PDF is already highly optimized. We couldn't reduce it significantly without affecting quality.”
+
+Do not force unnecessary compression.
+
+==================================================
+11. TARGET-SIZE ALGORITHM
+==================================================
+
+This is a core differentiating feature.
+
+Example:
+
+Original:
+8.7 MB
+
+Target:
+2 MB
+
+The system should progressively test appropriate compression strategies and select the best result that satisfies the target while preserving the highest practical quality.
+
+Do NOT simply use the strongest compression setting.
+
+If target cannot be reached safely:
+
+Show:
+
+“We couldn't reach 2 MB without significant quality reduction.”
+
+Then:
+
+“Best high-quality result: 2.8 MB”
+
+Options:
+
+“Use 2.8 MB”
+“Try stronger compression”
+
+Never silently destroy quality to hit a number.
+
+==================================================
+12. IMAGE COMPRESSION
+==================================================
+
+Implement:
+
+/compress-jpg
+/compress-png
+/compress-webp
+
+Use appropriate image-processing libraries.
+
+JPG:
+
+- optimize encoding
+- allow quality profiles
+- preserve dimensions by default
+- avoid unnecessary quality degradation
+
+PNG:
+
+- prioritize lossless optimization
+- do not pretend huge reductions are always possible
+
+WebP:
+
+- optimize appropriately
+- support quality-aware compression
+
+For all images:
+
+Show:
+
+Original size
+Compressed size
+Percentage saved
+
+Where possible:
+
+dimensions
+format
+quality mode
+
+==================================================
+13. OFFICE DOCUMENTS
+==================================================
+
+Implement:
+
+/compress-docx
+/compress-pptx
+/compress-xlsx
+
+Office files are ZIP-based document packages.
+
+Do not blindly rewrite or rasterize documents.
+
+Focus on safe optimization such as embedded media and package contents where technically reliable.
+
+Preserve:
+
+- text
+- formatting
+- tables
+- hyperlinks
+- charts
+- document structure
+- embedded content where possible
+
+After compression, validate that the resulting package is structurally valid.
+
+If the document is already optimized:
+
+Tell the user.
+
+Do not claim dramatic compression where none is possible.
+
+==================================================
+14. PROCESSING UI
+==================================================
+
+Show meaningful stages.
+
+Example:
+
+“Analyzing file”
+✓
+
+“Optimizing content”
+●
+
+“Building output”
+○
+
+“Verifying file”
+○
+
+“Ready”
+○
+
+Do not create fake percentage progress unless actual progress is measurable.
+
+Never leave users wondering whether the tool is frozen.
+
+==================================================
+15. RESULT SCREEN
+==================================================
+
+This is one of the most important screens.
+
+Example:
+
+“Compression complete”
+
+Original:
+8.7 MB
+
+Compressed:
+2.3 MB
+
+Saved:
+73.6%
+
+Then show useful verification:
+
+Pages:
+24 → 24
+
+Text:
+Preserved
+
+Format:
+PDF
+
+Output:
+Verified ✓
+
+Quality:
+High
+
+Main CTA:
+
+“Download PDF”
+
+Secondary:
+
+“Try stronger compression”
+
+“Compress another file”
+
+If target size was requested:
+
+Target:
+2 MB
+
+Result:
+2.3 MB
+
+Explain clearly if target was not reached.
+
+==================================================
+16. QUALITY INFORMATION
+==================================================
+
+Never claim:
+
+“100% quality preserved”
+
+unless the operation is actually lossless.
+
+Use honest labels:
+
+Lossless
+High quality
+Balanced
+Maximum compression
+
+If visual quality may change:
+
+Warn before processing.
+
+For image-based documents, preserve resolution where practical unless the user selects an option that allows reducing it.
+
+==================================================
+17. OPTIONAL QUALITY PREVIEW
+==================================================
+
+Where technically practical, create a comparison feature:
+
+Original
+vs
+Compressed
+
+Allow users to inspect a representative page/image.
+
+This should be especially useful for PDFs containing images.
+
+Keep it lightweight in V1.
+
+Do not make it a requirement for every file type.
+
+==================================================
+18. VERIFICATION
+==================================================
+
+Every generated file must be verified where technically possible.
+
+PDF:
+- valid structure
+- can be parsed/rendered
+- expected page count
+- output exists
+- output size is valid
+
+Office:
+- valid ZIP/package
+- expected document structure
+
+Images:
+- valid image
+- expected dimensions
+- output can be decoded
+
+If verification fails:
+
+DO NOT provide the broken file.
+
+Show:
+
+“We couldn't safely create the compressed file. Your original file is unchanged.”
+
+==================================================
+19. ERROR HANDLING
+==================================================
+
+Create human-readable errors.
+
+Examples:
+
+File too large:
+
+“This file is larger than the current 25 MB limit.”
+
+Unsupported:
+
+“This file type isn't supported yet.”
+
+Corrupt PDF:
+
+“We couldn't read this PDF. Please make sure it opens normally and try again.”
+
+Compression failure:
+
+“We couldn't safely compress this file.”
+
+Already optimized:
+
+“This file is already highly optimized, so further compression would likely affect quality.”
+
+Never expose raw stack traces to users.
+
+Log technical details server-side.
+
+==================================================
+20. FREE USAGE
+==================================================
+
+V1 should use generous but sustainable limits.
+
+Initial proposal:
+
+No account required.
+
+Example limits:
+
+Maximum file size:
+25 MB
+
+Daily anonymous operations:
+10
+
+These values must be configurable in one place.
+
+Do NOT hard-code limits throughout the application.
+
+Show limits transparently before processing.
+
+Do not create a fake “unlimited free” promise.
+
+Do not add payment functionality in V1.
+
+Prepare the architecture so limits can later be increased or connected to accounts.
+
+==================================================
+21. PRIVACY
+==================================================
+
+Create:
+
+/privacy
+
+Clearly explain:
+
+- what files are processed
+- whether processing is browser-side or server-side
+- how temporary files are handled
+- when temporary files are deleted
+- whether files are used for training
+- whether files are sold/shared
+- what analytics are collected
+
+IMPORTANT:
+
+Do not claim local processing unless the implementation actually performs it locally.
+
+Do not claim automatic deletion unless the backend actually deletes the files.
+
+Implement automatic cleanup of temporary uploaded/generated files.
+
+==================================================
+22. SECURITY
+==================================================
+
+Implement basic production security:
+
+- validate MIME types
+- validate file extensions
+- sanitize filenames
+- limit upload size
+- rate-limit processing endpoints
+- protect against path traversal
+- store temporary files outside public directories
+- never execute uploaded files
+- cleanup temporary files
+- processing timeouts
+- memory/resource safeguards
+- safe error handling
+
+Do not expose uploaded files through predictable public URLs.
+
+==================================================
+23. SEO
+==================================================
+
+SEO is a core requirement.
+
+Every tool must have its own indexable page.
+
+Pages:
+
+/
+ /compress-pdf
+ /compress-jpg
+ /compress-png
+ /compress-webp
+ /compress-docx
+ /compress-pptx
+ /compress-xlsx
+ /tools
+ /how-it-works
+ /privacy
+ /about
+ /contact
+ /terms
+
+Each tool page must have:
+
+- unique title
+- unique meta description
+- one clear H1
+- useful introductory content
+- real working tool above the fold
+- FAQs
+- internal links
+- canonical URL
+- Open Graph metadata
+- appropriate structured data where genuinely applicable
+
+Do NOT generate thin duplicate SEO pages.
+
+Do not keyword stuff.
+
+The tool itself must be the main content.
+
+==================================================
+24. TARGET-SIZE SEO PAGES
+==================================================
+
+Prepare architecture for future pages such as:
+
+/compress-pdf-to-1mb
+/compress-pdf-to-2mb
+/compress-pdf-to-5mb
+/compress-pdf-without-losing-quality
+
+But DO NOT create dozens of these automatically in V1.
+
+Only create useful pages with genuinely differentiated content/functionality.
+
+==================================================
+25. PERFORMANCE
+==================================================
+
+The homepage should load quickly.
+
+Do not load heavy compression libraries until needed.
+
+Lazy-load tool-specific code where practical.
+
+Optimize images/assets.
+
+Avoid unnecessary third-party scripts.
+
+Do not sacrifice tool functionality just to achieve a superficial Lighthouse score.
+
+==================================================
+26. MOBILE UX
+==================================================
+
+The entire product must work well on mobile.
+
+The upload area should be easy to tap.
+
+Buttons should have appropriate touch targets.
+
+Results should be readable.
+
+Download should be obvious.
+
+Avoid horizontal scrolling.
+
+Test:
+
+- phone width
+- tablet
+- desktop
+
+==================================================
+27. ACCESSIBILITY
+==================================================
+
+Implement:
+
+- semantic HTML
+- keyboard navigation
+- accessible labels
+- focus states
+- sufficient contrast
+- screen-reader-friendly upload controls
+- error announcements where appropriate
+- no color-only status indicators
+
+==================================================
+28. ANALYTICS
+==================================================
+
+Prepare privacy-conscious event tracking.
+
+Track:
+
+- homepage_view
+- tool_view
+- upload_started
+- upload_completed
+- compression_started
+- compression_completed
+- compression_failed
+- download_clicked
+- compression_mode_selected
+- target_size_selected
+
+Do not collect file contents.
+
+Do not log sensitive filenames unnecessarily.
+
+Make analytics implementation easy to disable/configure.
+
+==================================================
+29. ARCHITECTURE
+==================================================
+
+Use reusable components.
+
+Create shared components such as:
+
+FileUpload
+FileInfo
+GoalSelector
+TargetSizeSelector
+ProcessingSteps
+CompressionResult
+QualityIndicator
+PrivacyNotice
+ErrorMessage
+ToolCard
+ToolPage
+FAQSection
+Header
+Footer
+
+Create a reusable tool configuration system.
+
+Example conceptual structure:
+
+tool:
+- name
+- slug
+- acceptedFormats
+- maxFileSize
+- processor
+- description
+- SEO metadata
+
+This allows future tools to be added without rewriting the entire application.
+
+==================================================
+30. FILE PROCESSING ARCHITECTURE
+==================================================
+
+Separate:
+
+UI
+API
+validation
+processing
+verification
+cleanup
+
+Do not put compression logic directly inside React components.
+
+Use dedicated server-side processing modules.
+
+Example conceptual structure:
+
+/client
+/server
+  /processors
+    pdf
+    image
+    docx
+    pptx
+    xlsx
+  /validation
+  /verification
+  /cleanup
+  /routes
+
+Use clear interfaces so processors can be replaced or improved later.
+
+==================================================
+31. DATABASE
+==================================================
+
+Do NOT add a database unless it is actually needed for V1.
+
+No user accounts yet.
+
+No persistent file history.
+
+No user dashboard.
+
+If analytics/configuration requires persistence, keep it minimal.
+
+Do not create unnecessary infrastructure.
+
+==================================================
+32. ADMIN
+==================================================
+
+No public admin panel in V1.
+
+Keep configurable settings in environment/configuration:
+
+- file limits
+- daily limits
+- feature flags
+- maintenance mode
+
+==================================================
+33. FOOTER
+==================================================
+
+Include:
+
+File Compactor
+
+Tools
+Compress PDF
+Compress JPG
+Compress PNG
+Compress WebP
+Compress DOCX
+Compress PPTX
+Compress XLSX
+
+Company
+About
+Contact
+
+Legal
+Privacy
+Terms
+
+Small statement:
+
+“Built for simple, quality-focused file compression.”
+
+==================================================
+34. DESIGN DETAILS
+==================================================
+
+The interface should feel closer to a premium productivity tool than an old utility website.
+
+Avoid:
+
+- clutter
+- excessive ads
+- popup overload
+- fake urgency
+- aggressive upgrade banners
+- giant tool grids
+- confusing technical jargon
+
+Use:
+
+- generous whitespace
+- clear hierarchy
+- strong upload card
+- subtle borders
+- simple icons
+- clear CTA buttons
+- calm visual language
+- excellent responsive behavior
+
+The upload area is the hero of the tool page.
+
+==================================================
+35. DO NOT USE FAKE DATA
+==================================================
+
+This is critical.
+
+Do not show fake compression percentages.
+
+Do not simulate file processing.
+
+Do not create fake download buttons.
+
+Do not hard-code “75% saved”.
+
+All file size information must come from the actual uploaded/processed file.
+
+If a processor isn't implemented yet, clearly mark that tool as unavailable instead of pretending it works.
+
+==================================================
+36. TESTING
+==================================================
+
+Before considering V1 complete, test:
+
+PDF:
+- text-only PDF
+- image-heavy PDF
+- scanned PDF
+- mixed PDF
+- very small PDF
+- large PDF
+- already optimized PDF
+- malformed PDF
+
+Images:
+- JPG
+- PNG
+- WebP
+- different dimensions
+- small files
+- large files
+
+Office:
+- DOCX with text
+- DOCX with images
+- PPTX with images
+- XLSX with data
+- documents with unusual filenames
+
+Test:
+
+- upload failure
+- processing failure
+- download failure
+- mobile
+- desktop
+- slow connection
+- repeated processing
+- target size impossible to reach
+
+==================================================
+37. DEFINITION OF DONE
+==================================================
+
+V1 is complete only when:
+
+1. Homepage is polished.
+2. PDF compression actually works.
+3. Target-size PDF compression works where technically possible.
+4. Output is verified.
+5. Quality messaging is honest.
+6. JPG/PNG/WebP compression actually works.
+7. DOCX/PPTX/XLSX processing works reliably OR those tools are clearly disabled until implemented.
+8. Upload validation works.
+9. Temporary files are cleaned up.
+10. Errors are understandable.
+11. Mobile UX works.
+12. SEO pages are correctly structured.
+13. Privacy page accurately describes actual behavior.
+14. No fake functionality exists.
+15. No fake statistics exist.
+16. No unnecessary account requirement exists.
+17. The application has been tested with real files.
+18. The code is organized so future tools can be added without rewriting the core.
+
+==================================================
+38. IMPORTANT BUILD STRATEGY
+==================================================
+
+Do NOT attempt to implement everything simultaneously.
+
+Build incrementally.
+
+FIRST:
+Create the complete UI architecture and homepage.
+
+SECOND:
+Implement the PDF compressor end-to-end.
+
+THIRD:
+Test PDF compression thoroughly and fix problems.
+
+FOURTH:
+Implement JPG/PNG/WebP.
+
+FIFTH:
+Implement DOCX/PPTX/XLSX.
+
+SIXTH:
+Complete SEO, privacy, security, accessibility and performance.
+
+After each major stage:
+- run the application
+- test it in the browser
+- fix errors
+- verify the actual result
+
+Use Replit's testing capabilities where available.
+
+Do not move to the next major stage if the previous core feature is broken.
+
+==================================================
+39. FINAL PRODUCT EXPERIENCE
+==================================================
+
+The ideal experience is:
+
+Visitor arrives.
+
+They immediately understand:
+
+“File Compactor helps me reduce my file size.”
+
+They upload a file.
+
+They choose:
+
+“Best quality”
+or
+“Under 2 MB”
+
+The tool analyzes the file.
+
+The tool performs REAL compression.
+
+The output is verified.
+
+The user sees:
+
+Original: 8.7 MB
+Result: 2.3 MB
+Saved: 73.6%
+Quality: High
+Verified: ✓
+
+They click:
+
+“Download”
+
+No unnecessary signup.
+No confusing settings.
+No surprise payment wall.
+No misleading quality claims.
+
+Build this as a real, maintainable V1 product, not a visual mockup.
