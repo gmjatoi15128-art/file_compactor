@@ -1,1 +1,2 @@
 - [Browser-side file processing checks](browser-side-file-processing-checks.md) — Node 24 can run TypeScript runtime checks with `--experimental-strip-types` from the owning app package.
+- [Vite build-time environment handling](vite-build-environment-handling.md) — Keep preview-only env validation out of production builds; this Vite setup requires a synchronous config callback.
