@@ -1,5 +1,6 @@
 import express, { type Express } from "express";
 import cors from "cors";
+// Use the named export so TypeScript resolves pino-http as callable.
 import { pinoHttp } from "pino-http";
 import router from "./routes";
 import { logger } from "./lib/logger";
